@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
 import Context from "./context";
-import TodoList from "./todo/todoList";
 import Loader from "./loader/loader";
 import TextLoader from "./loader/loaderText";
 
-const TodoAddItem = React.lazy(() => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(import("./todo/todoAddItem"));
-    }, 3000);
-  });
-});
+const TodoAddItem = React.lazy(() => import("./todo/todoAddItem"));
+const TodoList = React.lazy(() => import("./todo/todoList"));
 
 function App() {
   const [todos, setTodos] = React.useState([]);
@@ -39,11 +33,7 @@ function App() {
   };
 
   const removeTodo = (id) => {
-    setTodos(
-      todos.filter((todo) => {
-        return todo.id !== id;
-      })
-    );
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const addTodo = (title) => {
@@ -61,14 +51,16 @@ function App() {
       ) : (
         <div className="wrapper">
           <h1 className="header">Todo List</h1>
-          <React.Suspense fallback={<TextLoader />}>
+          <React.Suspense fallback="">
             <TodoAddItem onCreate={addTodo} />
           </React.Suspense>
-          {todos.length ? (
-            <TodoList todos={todos} />
-          ) : loading ? null : (
-            <p>no data!</p>
-          )}
+          <React.Suspense fallback={<TextLoader />}>
+            {todos.length ? (
+              <TodoList todos={todos} />
+            ) : loading ? null : (
+              <p>no data!</p>
+            )}
+          </React.Suspense>
         </div>
       )}
     </Context.Provider>
