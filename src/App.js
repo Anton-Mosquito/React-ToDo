@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import Context from "./context";
 import Loader from "./loader/loader";
 import TextLoader from "./loader/loaderText";
@@ -10,7 +10,7 @@ function App() {
   const [todos, setTodos] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
-  useEffect(() => {
+  const fetchRequest = useCallback(() => {
     fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
       .then((response) => response.json())
       .then((todos) => {
@@ -21,26 +21,39 @@ function App() {
       });
   }, []);
 
-  const toggleTodo = (id) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-    );
-  };
+  const toggleTodo = useCallback(
+    (id) => {
+      setTodos(
+        todos.map((todo) => {
+          if (todo.id === id) {
+            todo.completed = !todo.completed;
+          }
+          return todo;
+        })
+      );
+    },
+    [todos]
+  );
 
-  const removeTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  const removeTodo = useCallback(
+    (id) => {
+      setTodos(todos.filter((todo) => todo.id !== id));
+    },
+    [todos]
+  );
 
-  const addTodo = (title) => {
-    setTodos(
-      todos.concat([{ title: title, id: Date.now(), completed: false }])
-    );
-  };
+  const addTodo = useCallback(
+    (title) => {
+      setTodos(
+        todos.concat([{ title: title, id: Date.now(), completed: false }])
+      );
+    },
+    [todos]
+  );
+
+  useEffect(() => {
+    fetchRequest();
+  }, [fetchRequest]);
 
   return (
     <Context.Provider

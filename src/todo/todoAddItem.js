@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 
 function TodoAddItem({ onCreate }) {
   const [value, setValue] = useState("");
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    if (value.trim()) {
-      onCreate(value);
-      setValue(" ");
-    }
-  };
+  const submitHandler = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (value.trim()) {
+        onCreate(value);
+        setValue(" ");
+      }
+    },
+    [onCreate, value]
+  );
+
   return (
     <form action="" onSubmit={submitHandler} className="form">
       <input
