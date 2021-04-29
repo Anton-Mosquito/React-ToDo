@@ -1,7 +1,7 @@
 import React from "react";
 import "./loader.css";
 
-export default () => {
+export default function Loader() {
   return (
     <div
       style={{
@@ -13,4 +13,4 @@ export default () => {
       <div className="cssload-box-loading"></div>
     </div>
   );
-};
+}

@@ -1,7 +1,38 @@
 import React from "react";
 import "./loaderText.css";
 
-export default () => {
+const letters = [
+  {
+    letter: "L",
+    idLetter: "inTurnFadingTextG_1",
+  },
+  {
+    letter: "o",
+    idLetter: "inTurnFadingTextG_2",
+  },
+  {
+    letter: "a",
+    idLetter: "inTurnFadingTextG_3",
+  },
+  {
+    letter: "d",
+    idLetter: "inTurnFadingTextG_4",
+  },
+  {
+    letter: "i",
+    idLetter: "inTurnFadingTextG_5",
+  },
+  {
+    letter: "n",
+    idLetter: "inTurnFadingTextG_6",
+  },
+  {
+    letter: "g",
+    idLetter: "inTurnFadingTextG_7",
+  },
+];
+
+export default function TextLoader() {
   return (
     <div
       style={{
@@ -12,28 +43,12 @@ export default () => {
       }}
     >
       <div id="inTurnFadingTextG">
-        <div id="inTurnFadingTextG_1" className="inTurnFadingTextG">
-          L
-        </div>
-        <div id="inTurnFadingTextG_2" className="inTurnFadingTextG">
-          o
-        </div>
-        <div id="inTurnFadingTextG_3" className="inTurnFadingTextG">
-          a
-        </div>
-        <div id="inTurnFadingTextG_4" className="inTurnFadingTextG">
-          d
-        </div>
-        <div id="inTurnFadingTextG_5" className="inTurnFadingTextG">
-          i
-        </div>
-        <div id="inTurnFadingTextG_6" className="inTurnFadingTextG">
-          n
-        </div>
-        <div id="inTurnFadingTextG_7" className="inTurnFadingTextG">
-          g
-        </div>
+        {letters.map((item, index) => (
+          <div id={item.idLetter} className="inTurnFadingTextG" key={index}>
+            {item.letter}
+          </div>
+        ))}
       </div>
     </div>
   );
-};
+}

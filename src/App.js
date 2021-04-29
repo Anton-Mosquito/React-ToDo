@@ -64,7 +64,7 @@ function App() {
       ) : (
         <div className="wrapper">
           <h1 className="header">Todo List</h1>
-          <React.Suspense fallback="">
+          <React.Suspense fallback={<TextLoader />}>
             <TodoAddItem onCreate={addTodo} />
           </React.Suspense>
           <React.Suspense fallback={<TextLoader />}>
