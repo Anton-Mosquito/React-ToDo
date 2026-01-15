@@ -1,0 +1,214 @@
+body{
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#edf5e1;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.wrapper {
+  position: relative;
+  width: 500px;
+  background: #fff;
+}
+
+.wrapper .header{
+  background: #03a9f4;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+
+.wrapper .list{
+  position: relative;
+  margin: 0;
+  padding: 40px;
+}
+
+.wrapper .list .listItem{
+  position: relative;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-radius: 4px;
+}
+
+.wrapper .list .listItem:last-child{
+  border-bottom: none
+}
+
+
+.wrapper .list .listItem label{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.wrapper .list .listItem label input{
+  visibility: hidden;
+  appearance: none;
+}
+
+.wrapper .list .listItem label p {
+  position: absolute;
+}
+
+.wrapper .list .listItem label span {
+  position: absolute;
+  left: -30px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper .list .listItem label span::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  transform: rotate(-40deg);
+}
+
+.wrapper .list .listItem label input:checked ~ span{
+  background: #03a9f4;
+  border: 1px solid #03a9f4;
+}
+
+.wrapper .list .listItem label input:checked ~ span::before{
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #fc3275;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.form{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form input {
+  background-color: #fff;
+  font-size: 1.15rem;
+  border-bottom: 2px solid #ccc;
+  padding: 0 0 0 1rem;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+
+
+.btnAdd {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid #03a9f4;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 2px;
+  color:#03a9f4;
+  -webkit-box-reflect: below 0px linear-gradient(transparent,#0002);
+  transition: .5s;
+  outline: none;
+  cursor: pointer;
+  transition-delay: 0s;
+}
+
+.btnAdd span {
+  position: relative;
+  z-index: 100;
+}
+
+.btnAdd:hover {
+  transition-delay: 1.5s;
+  color: #fff;
+  box-shadow: 0 0 10px  #03a9f4,
+              0 0 20px  #03a9f4,
+              0 0 40px  #03a9f4,
+              0 0 80px  #03a9f4,
+              0 0 160px  #03a9f4,
+}
+
+.btnAdd::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform:  translateY(-50%);
+  width: 20px;
+  height: 2px;
+  background:  #03a9f4;
+  box-shadow: 5px -8px 0  #03a9f4,
+              5px 8px 0 #03a9f4;
+  transition: width .5s, left .5s, height .5s,box-shadow .5s;
+  transition-delay: 1s,.5s,0s,0s;
+}
+
+.btnAdd:hover::before {
+  width: 60%;
+  height: 100%;
+  left: -2px;
+  box-shadow: 5px 0 0  #03a9f4,
+              5px 0 0  #03a9f4;
+  transition-delay: 0s,.5s,1s,1s;
+}
+
+.btnAdd::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform:  translateY(-50%);
+  width: 20px;
+  height: 2px;
+  background:  #03a9f4;
+  box-shadow: -5px -8px 0  #03a9f4,
+              -5px 8px 0 #03a9f4;
+  transition: width .5s, left .5s, height .5s,box-shadow .5s;
+  transition-delay: 1s,.5s,0s,0s;
+}
+
+.btnAdd:hover::after {
+  width: 60%;
+  height: 100%;
+  right: -2px;
+  box-shadow: -5px 0 0  #03a9f4,
+              -5px 0 0  #03a9f4;
+  transition-delay: 0s,.5s,1s,1s;
+}
